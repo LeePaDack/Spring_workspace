@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet Project</title>
+</head>
+<body>
+	<h1>KH 페이지</h1>
+	<h1>index.html 파일은 메인 페이지 역할을 함
+	어떻게 자바랑 HTML 연결이 되나? -> web.xml 파일 확인
+	</h1>
+	<hr>
+	<hr>
+	<pre>
+	- 이름, 나이를 입력 받아 서버로 제출
+	*** HTML 지식 ***
+	
+	1) input 태그 : 값을 입력할 수 있는 양식을 제공하는 태그
+	
+		- name 속성 : input 태그 값 (value)이 서버로 제출될 때
+		             key 역할을 하는 속성
+		- value 속성 또는 작성된 값 : 서버로 제출되는 값
+		
+	2) form 태그 : 내부에 작성된 입력값 (input 태그)을 지정된 경로 제출
+	
+		- 지정된 경로 : 다른 HTML 파일 경로, 서버(Java servlet) 요청한 주소
+		
+		- action 속성 : 제출할 경로 또는 주소를 작성하는 속성
+		
+		- method : 제출 방식을 지정하는 속성 (기본값 : GET)
+	</pre>
+	<!-- form 태그 제출시 내부 input 에 작성된 값을 /ex1 요청을 처리하는 
+		 서버(servlet) 으로 제출(GET 방식)
+	 -->
+	 <form action = "/ex1" method = "get">
+	 	이름 : <input type="text" name="inputName"><br>
+	 	
+	 	나이 : <input type="number" name="inputAge"><br>
+	 	<button type="submit">제출하기(== 서버에 요청하기)</button>
+	 </form>
+</body>
+</html>

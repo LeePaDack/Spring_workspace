@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>스프링 부트 연결하기</h1>
+		
+		<h3>스프링 부트 프로젝트 실행방법(서버 배포 방법)</h3>
+		
+		<pre>
+		src/main/java 하위 패키지에
+		OOOApplication.java 파일이 프로젝트 생성 시 자동으로 생성됨
+		(OOO 은 프로젝트 파일명)
+		
+		해당 클래스는 main 메서드 존재
+		-> 실행 -> Tomcat 서버가 안에 존재하기 때문에 알아서 배포 시작
+		(브라우저가 알아서 실행되지 않기 때문에 각자 주소를 알아서 입력)
+		http://localhost:서버포트/주소값
+		
+		우리는 8081 서버 포트를 줬기 때문에
+		http://localhost:8081
+		에러 페이지 현재는 발생!
+		</pre>
+		
+		<h3>프로젝트 구조</h3>
+		<ul>
+			<li>scr/main/java : 자바 소스코드를 모아두는 폴더</li>
+			<li>src/main/resources : 자바에서 사용할 자원, 설정 파일을 모아두는 폴더
+				<ul>
+					<li>templates : 
+						Java 템플릿(응답 화면)을 모아두는 폴더
+						주로 HTML 이 존재
+					</li>
+					<li>
+						static :
+						templates 에 적용될 정적 자원을 모아두는 폴더
+						주로 Javascript, css, 이미지 등
+					</li>
+					<li>
+						application.properties :
+						spring Boot 프로젝트 관련 설정을 정의하는 파일(매우 중요함)
+					</li>
+					
+					<li>
+						maven : 아파치에서 개발한 프로젝트 관리 및 이해도구
+								pom.xml 파일로 존재
+									추가하고 싶은 기능을 작성
+					</li>
+					
+					<li>
+						gradle :  그루비를 이용한 빌드 자동화 시스템
+								build.gradle 파일로 존재
+									추가하고 싶은 기능을 작성
+								
+								그루비란? 
+									자바에 파이썬이나 루비등의 특징을 더한 언어
+									코틀린을 이용한 빌드 자동화 시스템
+									코틀린이란? 웹 앱을 만드는 언어
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<hr>
+		<ol>
+			<li>
+				<a href="/test">요청 + forward 처리</a>
+			</li>
+			<li>
+				<a href="/example">이미지 보러가기</a>
+			</li>
+		</ol>
+	</body>
+</html>
