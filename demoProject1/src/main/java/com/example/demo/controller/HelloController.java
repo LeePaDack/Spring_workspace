@@ -48,4 +48,6 @@ public class HelloController {
 		System.out.println("/test 요청받았는지확인");
 		return "test";
 	}
+	
+	
 }

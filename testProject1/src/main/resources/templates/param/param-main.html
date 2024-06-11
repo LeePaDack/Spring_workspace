@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>서버로 파라미터 제출하기</title>
+	</head>
+	<body>
+		<h1>서버로 파라미터 제출하기</h1>
+		
+		<h3>1. HttpServletRequest.getParameter("key") 이용</h3>
+		<form action="/param/test1" method=Post>
+			이름 : <input type="text" name="inputName"><br>
+			나이 : <input type="number" name="inputAge"><br>
+			주소 : <input type="text" name="inputAddress"><br>
+			<button>제출하기</button> <!-- 버튼의 기본 타입은 submit -->
+		</form>
+		
+		<form action="연결주소값2" method=POST>
+			책 제목 : <input type="text" name="title"><br>
+			작성자 : <input type="text" name="writter"><br>
+			가격 : <input type="number" name="price"><br>
+			출판사 : <input type="text" name="publisher"><br>
+			<button>제출하기</button> <!-- 버튼의 기본 타입은 submit -->
+		</form>
+	</body>
+</html>

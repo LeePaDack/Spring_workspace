@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>서버로 파라미터 제출하기</title>
+</head>
+<body>
+	<h1>서버로 파라미터 제출하기</h1>
+	<h3>1. HttpServletRequest.getParameter("key") 이용해서 제출하기</h3>
+	<!-- method = GET 일 경우 DB 에서 가져와 사람들에게 보여주기 
+		 method = POST 일 경우 DB 에 저장하거나 수정하거나 삭제 전달하기
+	-->
+	<!-- action 에 작성할 주소값은?
+		param/main - http://localhost:8081/param/param/main
+		param/test1 - http://localhost:8081/param/param/test1
+		
+		/param/main - http://localhost:8081/param/main  문제 발생
+		/param/test1 -http://localhost:8081/param/main  문제없이 실행
+			- input 에 작성한 값을 확인하고 다시 input 페이지로 돌아오는 것
+			- 값 전달하고 /param/main 페이지로 돌아오는 과정이 너무 빠르기 때문에
+		      우리 눈에는 변화가 없는 것 처럼 보이는 것
+		      
+		맨 앞에 / 를 붙이지 않으면 Controller 에 작성된 param 이라는 공통 주소가 한 번 더 붙기 때문에
+		위와 같이 /param/parm/main, /param/param/test1 조서가 변형되는 것
+	
+	 -->
+	<form action="/param/test1" method="POST">
+	이름 : <input type="text" name="inputName"><br>
+	나이 : <input type="number" name="inputAge"><br>
+	주소 : <input type="text" name="inputAddress"><br>
+	<button>제출하기</button> <!-- 버튼의 기본 타입은 submit -->
+	
+	</form>
+	<h3>2. @RequestParam 어노테이션을 이용
+		- 낱개(단수, 독립된) 파라미터(매개변수) 컨트롤러에서 얻어오는 방법
+	</h3>
+	<form action="연결주소값2" method="POST">
+		책 제목 : <input type="text" name="title"><br>
+		작성자 : <input type="text" name="writter"><br>
+		가격 : <input type="number" name="price"><br>
+		출판사 : <input type="text" name="publisher"><br>
+		<button>제출하기</button> <!-- 버튼의 기본 타입은 submit -->
+ 	</form>
+</body>
+</html>
