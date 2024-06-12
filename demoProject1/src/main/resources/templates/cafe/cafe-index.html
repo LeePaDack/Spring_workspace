@@ -1,10 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>카페 메인</title>
+	</head>
+	<body>
+		<header>
+			<h1>우리 카페에 오신 것을 환영합니다.</h1>
+			<nav>
+				<ul>
+					<li><a href="/home">맨 앞으로 돌아가기</a></li>
+					<li><a href="/blog/blog-index">블로그 메인으로 이동하기</a></li>
+					<li><a href="/cafe/cafe-board">카페 게시판으로 이동하기</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="container">
+			<!-- 소개 섹션 -->
+			<div class="intro">
+				<h2>소개</h2>
+				<p> 안녕하세요 우리 카페는 아늑한 분위기와 맛있는 커피를 제공합니다.
+					다양한 음료와 디저트를 즐길 수 있습니다. (활동을 열심히 하시면)
+				</p>
+			</div>
+			
+			<!-- 메뉴 섹션 -->
+			<div class="menu">
+				<h2>메뉴</h2>
+				<ul>
+					<li>아메리카노 - 3,000 원</li>
+					<li>카페라테 - 3,000 원</li>
+					<li>카푸치노 - 3,500 원</li>
+				</ul>
+			</div>
+			
+			<!-- 위치 섹션 -->
+			<div class="location">
+				<h2>위치</h2>
+				<p>서울특별시 강남구 역삼동</p>
+				<p>운영 시간 : 월 ~ 금  09:00 ~ 18:00</p>
+				<p>카페 회원만 이용 가능합니다.</p>
+			</div>
+			
+			<!-- 사이드바 섹션 -->
+			<div class="sidebar">
+				<h2>특별 행사</h2>
+				<p>매주 금요일, 모든 음료 20% 할인</p>
+			</div>
+			
+			<!-- 방문자 의견 섹션 -->
+			<div class="vistor-comment">
+				<h2>방문자 의견</h2> 
+				<form action="/cafe/comment" method="post">
+					<label>이름 : </label>
+					<input type="text" name="cafeCommentName" required>
+					<br>
+					<label>의견 : </label>
+					<input type="text" name="cafeCommentOpinion" required>
+					<br>
+					
+					<button>작성하기</button>
+				</form>
+			</div>
+		</div>
+	</body>
 </html>
