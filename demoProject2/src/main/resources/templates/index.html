@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ThymeLeaf</title>
+	</head>
+	<body>
+		<h1>ThymeLeaf</h1>
+		
+		<h3>템플릿 엔진</h3>
+		<pre>
+			템플릿 양식과 특정 데이터 모델에 따른 입력 자료를 합성하여
+			결과 문서(응답 화면)를 출력하는 것
+			
+			-> 만들어준 화면(html)에 데이터를 추가하여 하나의 html 로 만들어서 응답
+			(jsp 템플릿 엔진 중 하나)
+			<a href="https://www.thymeleaf.org/">타임리프 홈페이지로 이동하기</a>
+		</pre>
+		
+		<h3>2. ThymeLeaf</h3>
+		<pre>
+			웹 및 독립 실행형 환경 모두를 위한 최신 서버 측 Java 템플릿 엔진
+			-> 웹 실행 == 요청 시 포워드 되는 화면
+			--> 독립 실행 == html 파일 실행(인터넷 연결 X)
+			
+			HTML 파일에서 th(ThymeLeaf) 속성을 이용해
+			컨트롤러부터 전달받은 데이터를 이용해 동적 페이지를 만들 수 있음
+			
+			Spring boot 에서는 jsp 가 아닌 ThymeLeaf 사용을 권장하고 있음
+			
+			[사용방법]
+			html 에서 
+			< !DOCTYPE html > 밑에 작성된
+			< html xmlns:th="http://www.thymeleaf.org" > 작성 후 사용 가능
+			http://www.thymeleaf.org 이 주소를 가져오는데 th 를 사용해서 작성
+			
+			html xmlns:별칭="템플릿가져올 주소"
+		</pre> 
+		
+		<ol>
+			<li><a href="/example/ex1">타임리프 예제</a></li>
+		</ol>
+	</body>
+</html>
