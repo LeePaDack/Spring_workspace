@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>내 블로그</title>
+    <link rel="stylesheet" href="/css/blog.css">
+  </head>
+  <body>
+    <header>
+      <h1>내 블로그에 오신 것을 환영합니다.</h1>
+      <nav>
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">소개</a></li>
+          <li><a href="#">연락처</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="posts">
+        <!-- article : 블로그, 글, 뉴스기사, 포럼 게시물 등과 같이 독립적적으로
+                       작성하거나 재사용할 수 있는 내용을 작성할 때 사용
+        -->
+        <div class="article">
+          <h2>블로그 글 제목1</h2>
+          <p>
+            첫 번째 블로그 글 내용. 우리 블로그에는 다양한 정보를 담고 있습니다.
+          </p>
+          <a href="#">더보기</a>
+        </div>
 
-</body>
+        <div class="article">
+            <h2>블로그 글 제목2</h2>
+            <p>
+                여기는 블로그로 소통하고 정보를 나누는 공간입니다.
+            </p>
+            <a href="#">더보기</a>
+        </div>
+
+      </div>
+      <!-- aside : 본문 내용과 간접적으로 관련된 내용을 표시할 때 사용
+                   예를 들어 블로그 페이지의 사이드 바, 광고, 관련 링크, 저자정보 등
+       -->
+      <div class="aside">
+        <h2>소개</h2>
+        <p>안녕하세요. 저의 블로그입니다. 제 블로그에 오신 것을 환영합니다.
+            여기서 다양한 생각과 경험을 공유합니다.
+        </p>
+      </div>
+      
+      <div class="visitor-comments"> <!-- visitor : 방문자   comments : 댓글들 -->
+        <h2>방문자 의견</h2>
+        <form action="/blog/comment" method="post">
+            <label>이름 : </label>
+            <input type="text" name="commentName">
+             <br>
+            <label>의견 :</label>
+            <input type="text" name="commentOpinion">
+            <br>
+            <button type="submit">제출</button>
+        </form>
+      </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 내 블로그. 모든 권리 보유.</p>
+    </footer>
+  </body>
 </html>

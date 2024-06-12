@@ -1,0 +1,114 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #f2f2f2;
+}
+
+header {
+	background-color: #333;
+	color: white;
+	padding: 10px 0;
+	text-align: center;
+}
+
+header h1 {
+	margin: 0px;
+}
+/* 네비게이션 꾸미기 */
+nav ul {
+	list-style: none;
+	padding: 0px;
+}
+
+nav ul li {
+	display: inline;
+	margin: 0px 10px; /* 상하 0 좌우 10 */
+}
+
+nav ul li a {
+	color: white;
+	text-decoration: none;
+}
+
+/* class container 꾸미기 */
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 20px;
+}
+/* class posts 꾸미기 class 는 . 으로 시작 */
+.posts {
+	flex: 2;
+	margin-right: 20px;
+}
+/* div class posts 밑에 있는 article class 꾸미기 */
+.posts .article {
+	background-color: white;
+	margin-bottom: 20px;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #f2f2f2;
+}
+
+.posts .article h2 {
+	margin-top: 0px;
+}
+
+.posts .article a {
+	color: #333;
+	text-decoration: none;
+}
+
+/* aside class 꾸며주기 */
+.aside {
+	flex: 1;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #f2f2f2;
+}
+
+.visitor-comments {
+	flex: 1 1 100%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #f2f2f2;
+	margin-top: 20px;
+}
+
+.visitor-comments form {
+	display: flex;
+	flex-direction: column;
+}
+
+.visitor-comments h2 {
+	margin-top: 0;
+}
+
+.visitor-comments input {
+	margin: 10px 0px 5px;
+}
+
+.visitor-comments input, .visitor-comments textarea {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.visitor-comments button {
+	border: none;
+	background-color: #333;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+footer {
+	text-align: center;
+	padding: 20px 0;
+	background-color: #333;
+	color: white;
+}
