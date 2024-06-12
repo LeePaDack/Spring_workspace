@@ -181,23 +181,29 @@ public class ParameterController {
 	public String paramTest4(/*@ModelAttribute*/ MemberDTO inputMember) {
 		//lombok 만든 setter getter로 값 가져오거나 설정하기
 		
-		MemberDTO mem = new MemberDTO();
-		mem.getMemberAge(); //getter 를 통해 나이 가져오기
-		mem.setMemberAge(0); //setter 를 통해 나이 가져오기
-		//getter setter 이용해서 
-		//	private String memberId;
-		mem.getMemberId();
-		mem.setMemberId("1");
-		// private String memberPw;
-		mem.getMemberPw();
-		mem.setMemberPw("pass01");
-		//  private String memberName;   ("가나다");
-		mem.getMemberName();
-		mem.setMemberName("가나다");
-		//굳이 따로 만들지 않아도 lombok @Getter @Setter 를 만들어 가져오기 때문에 
-		//사용 가능한 것
-		log.info("inputMember에 대한 get 정보 가져오기 : " + inputMember.toString());
-		return "redirect:/param/main";
+				MemberDTO mem = new MemberDTO();
+				mem.getMemberAge(); //getter 를 통해 나이 가져오기
+				mem.getMemberName();
+				mem.getMemberPw();
+				mem.getMemberId();
+				log.info("inputMember에 대한 get 정보 가져오기 : " + inputMember.toString());
+				
+				
+				
+				
+				mem.setMemberAge(0); //setter 를 통해 나이 가져오기
+				mem.setMemberName("가나다");
+				mem.setMemberPw("pass01");
+				mem.setMemberId("1");
+				//getter setter 이용해서 
+				//	private String memberId;
+				// private String memberPw;
+				//  private String memberName;   ("가나다");
+				//굳이 따로 만들지 않아도 lombok @Getter @Setter 를 만들어 가져오기 때문에 
+				//사용 가능한 것
+				
+				log.info("inputMember에 대한 set 정보 가져오기 : " + inputMember.toString());
+				return "redirect:/param/main";
 		
 
 		
