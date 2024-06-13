@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>타임리프 예제 3</title>
+	</head>
+	<body>
+		<h1>타임리프 예제 3</h1>
+		
+		<h3>링크(URL) 조합에 사용되는 Spring (@{})</h3>
+		<ul>
+			<li>
+				<a href="/board">게시판(/board)</a>
+			</li>
+			
+			<li>
+				<a href="/board?key=제목&query=검색어">게시판 검색</a>
+			</li>
+			
+			<li>
+				<!-- 타임 리프를 이용한 쿼리스트링 작성법 -->
+				<!-- 위에 작성된 a 태그의 href 속성은 똑같은 값 -->
+				<a th:href="@{board(key=${key}, query=${query})}">주걱</a>
+				
+			</li>
+		</ul>
+	</body>
+</html>

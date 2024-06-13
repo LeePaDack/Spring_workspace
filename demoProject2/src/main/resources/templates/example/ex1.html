@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <!-- th 속성 추가, 네임스페이스로 th 를 사용하겠다 선언 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title>타임리프 예제 1</title>
-	</head>
-	<body>
-		<h1>타임리프 예제 1</h1>
-		<pre>
+<head>
+<meta charset="utf-8">
+<title>타임리프 예제 1</title>
+</head>
+<body>
+	<h1>타임리프 예제 1</h1>
+	<pre>
 			Spring EL(스프링 표현 언어)
 			- ${key} : 변수, Model 등을 이용해서 세팅한 값 출력
 			
@@ -17,8 +17,185 @@
 			** th 속성은 출력된 화면(응답화면) 보여지지 않음 **
 			--> 왜냐하면 해석된 후 사라짐
 		</pre>
+
+	<h4 th:text="${test1}">test1 값 확인</h4>
+	<h4 th:text="${test2}">test2 값 확인</h4>
+
+	<hr>
+
+	<h3>단일 값 출력</h3>
+
+	<pre>
+			th : block 태그
+			- Thymeleaf 에서 제공하는 유일한 태그
+			
+			- Thymeleaf 는 태그 내에 th 속성을 작성하여 저으이하는게 일반적이지만
+			  th 속성을 작성할 태그가 존재하지 않을 때 사용
+			  
+			- th : text 보단 조건, 반복문과 같이 사용하는 경우가 많음
+		</pre>
+
+	productName :
+	<th:block th:text="${productName}">상품명</th:block>
+	/
+	<span th:text="${productName}">상품명</span>
+	<!-- th:block 과 span 태그는 동일하게 사용할 수 있지만
+					   		th:block 은 조건이나 반복문을 사용할 때 많이 사용
+					    -->
+
+	price :
+	<span class="price"> <th:block th:text="${price}">가격</th:block>
+		원
+	</span>
+	<!-- th:block 을 이용해서 productCompany 만들고 controller 에서 KHCOMPANY 라는 회사명 전달받기 -->
+
+	productCompany :
+	<th:block th:text="${productCompany}">회사명</th:block>
+
+	<hr>
+
+	<h4>복수 값 출력</h4>
+	<pre>
+			th:each="item : ${List 또는 배열}"
+			
+			- 향상된 for 문
+			
+			- List 또는 배열 길이 만큼 반복
+			
+			- 매 반복시마다 List 또는 배열의 요소를 차례대로 꺼내 item 변수에 저장
+				(item 변수명은 자유롭게 잓성)
+		</pre>
+
+	<ul>
+		<li th:text="${fruitList}">과일목록</li>
+	</ul>
+
+	<ul>
+		<li th:text="${fruitList[0]}">0 번 째 과일 이름</li>
+		<li th:text="${fruitList[1]}">1 번 째 과일 이름</li>
+		<li th:text="${fruitList[2]}">2 번 째 과일 이름</li>
+	</ul>
+
+	<ul>
+		<li th:text="${animal}">동물 리스트</li>
+		<!-- 동물 리스트는 개발자가 이 값에 뭐가 들어가야하는지 알려주는 공간
+				 사용자 눈에는 동물 리스트가 보이지 않음
+				 Controller 에서 호랑이 토끼 거북이 작성
+			 -->
+	</ul>
+
+	<!-- ul 과 li 사용해서 0 1 2 번째 동물 순서대로 보이게 표시 -->
+	<ul>
+		<li th:text="${animal[0]}">0 번 째 동물 이름</li>
+		<li th:text="${animal[1]}">1 번 째 동물 이름</li>
+		<li th:text="${animal[2]}">2 번 째 동물 이름</li>
+	</ul>
+
+	<!-- th:each 문 사용해서 for 문으로 표시 -->
+	<hr>
+	<h4>th:each 사용</h4>
+	<ul>
+		<th:block th:each="fruit : ${fruitList}">
+			<li th:text="${fruit}">과일명</li>
+		</th:block>
+	</ul>
+
+	<ul>
+		<th:block th:each="a : ${animal}">
+			<li th:text="${a}">동물명</li>
+		</th:block>
+	</ul>
+
+
+	<!-- DTO 객체 출력 -->
+	<h3>DTO 객체 출력</h3>
+	<h4>방법 1</h4>
+	<ul>
+		<li th:text="${std}">std 객체</li>
+		<!--  StudentDTO(studentNo=12345, name=홍길동, age=30) -->
+		<li th:text="${std.studentNo}">학번</li>
+		<!--  12345 -->
+		<li th:text="${std.name}">이름</li>
+		<!--  홍길동  -->
+		<li th:text="${std.age}">나이</li>
+		<!--  30    -->
+	</ul>
+	<!-- std student 줄임말 많이 사용
+				student 에
+				학번으로 studentNo
+				이름 name
 		
-		<h4 th:text="${test1}">test1 값 확인</h4>
-		<h4 th:text="${test2}">test2 값 확인</h4>
-	</body>
+		 -->
+	<h4>방법 2</h4>
+	<pre>
+		th:object 속성 + *{필드명}
+		
+		- th:object 속성 : 해당 태그 내에서
+						  지정된 객체의 필드를 쉽게 접근하게 하는 속성
+						  
+		- *{} : th:object 로 지정된 객체의 필드를 접근할 때 사용하는 방법
+	</pre>
+		 
+	<ul th:object="${std}">
+		<li th:text="*{studentNo}">학번</li>
+		<li th:text="*{name}">이름</li>
+		<li th:text="*{age}">나이</li>
+	</ul>	 
+
+		 
+	<h4>DTO MEMBER 객체 출력</h4>
+	<ul>
+		<li th:text="${mem}">mem 객체</li>
+		<li th:text="${mem.memberNo}">멤버 번호</li>
+		<li th:text="${mem.memberName}">멤버 이름</li>
+		<li th:text="${mem.memberAge}">멤버 나이</li>
+	</ul>
+	
+	<!-- 방법 2번을 활용해서 mem 객체들 보여주기 -->
+	<ul th:object="${mem}">
+		<li th:text="*{memberNo}">번호</li>
+		<li th:text="*{memberName}">이름</li>
+		<li th:text="*{memberAge}">나이</li>
+	</ul>
+	
+	<h4>방법 3번</h4>
+	<h5>DTO 가 담긴 List 출력하기</h5>	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>학번</th>
+				<th>이름</th>
+				<th>나이</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- th:each 가 설정된 태그 전체(tr) 반복됨 -->
+			<tr th:each="std : ${stdList}" th:object="${std}">
+				<td th:text="*{studentNo}">학번</td>
+				<td th:text="*{name}">이름</td>
+				<td th:text="*{Age}">나이</td>
+			</tr>
+		</tbody>
+	</table>
+		
+	<!-- table 이용해서 mem 출력 -->
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>나이</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="mem : ${memList}" th:object="${mem}">
+				<td th:text="*{memberNo}">번호</td>
+				<td th:text="*{memberName}">이름</td>
+				<td th:text="*{memberAge}">나이</td>
+			</tr>
+		</tbody>
+	</table>
+	<th:block th:replace="~{layout/footer}"></th:block>
+</body>
 </html>
