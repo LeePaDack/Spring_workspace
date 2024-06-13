@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>멤버 정보</title>
+	</head>
+	<body>
+		<h1>멤버 정보 보기</h1>
+	
+		<h3>방법 1 번</h3>
+		<ul>
+			<li th:text="${mem}">member 객체</li>
+			<li th:text="${mem.memberName}">member 이름</li>
+			<li th:text="${mem.memberPhone}">member 번호</li>
+			<li th:text="${mem.memberAge}">member 나이</li>
+		</ul>
+		
+		<hr>
+		
+		<h3>방법 2 번</h3>
+		<ul th:object="${mem}">
+			<li th:text="*{memberName}">멤버 이름</li>
+			<li th:text="*{memberPhone}">멤버 번호</li>
+			<li th:text="*{memberAge}">멤버 나이</li>
+		</ul>
+		
+		<hr>
+		
+		<h3>방법 3 번</h3>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>번호</th>
+					<th>나이</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- Controller 에서 가져온 memList 를 모두 가져온 모음집 -->
+			<!-- memList 하나씩 꺼내서 mem 변수에 하나씩 값을 담아줌 -->
+				<tr th:each="mem : ${memList}" th:object="${mem}"> <!-- object 로 mem 이름을 모두 앞에다 붙였음 -->
+					<td th:text="*{memberName}">name</td> <!-- mem.memberName  object 에 mem 이름을 붙여줬기 때문에
+					만약에 mem.memberName 쓰면 mem.mem.memberName 작성한 것으로 에러가날 수 있다. -->
+					<td th:text="*{memberPhone}"}>phone</td>
+					<td th:text="*{memberAge}">age</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
