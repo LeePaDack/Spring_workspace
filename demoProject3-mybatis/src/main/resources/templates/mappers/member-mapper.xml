@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- window -> preferences -> xml(Wild Web Developer)
+	
+	Download external resources like referenced DTD,XSD 체크하고 Apply 하면 에러 해결
+ -->
+ 
+<!-- mapper 로 sql 작성이 어디서부터 어디까지인지 범위를 설정
+	 namespace 는 나중에 java 파일 중에서 어떤 파일로 db 작성내용을 전달받고 전달할지 파일 지정 -->
+<mapper namespace="com.example.demo.mapper.MemberMapper">
+		<!-- id 는 나중에 MemberMapper 로 만든 interface 에 전달할 명칭
+		   parameterType 은 DTO 중에서 어떤 java 파일을 바라볼지 선택 -->
+	<insert id="insertMember" parameterType="com.example.demo.dto.Member">
+	INSERT INTO	member(member_id, member_name, member_age, member_phone)
+			<!-- DB 에 저장된 컬럼명 -->
+	VALUES (member_seq.NEXTVAL, #{memberName}, #{memberAge}, #{memberPhone})		
+			<!-- DTO 라는 폴더 밑에 작성된 Member 객체 안에 적혀있는 변수명들을 작성 -->
+	</insert>
+	
+	<!-- 마찬가지로 select update delete 작성해주면 됨 
+	
+	select 는 parameterType 이 들어가는 것이 아니라 resultSet 사용해서 검색이나 조회한 결과를 자바에 전달함 -->
+</mapper>
+        
+        
+        
+        
