@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>타임리프 예제 5</title>
+		<style>
+			.red{
+				color:red;
+			}
+			.green{
+				color:green;
+			}
+			.deco{
+				text-decoration:underline;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>타임리프 예제 5</h1>
+		
+		<h3>th:inline = "javascript" 속성</h3>
+		<pre>
+			- script 태그에 작성하는 속성
+			
+			- 타임리프 문법으로 출력된 내용 / 값을 JS 에 알맞은 타입으로 변환
+		</pre>
+		
+		<h3 id="message"></h3>
+		<h3 id="num1"></h3> <!-- num1 숫자 1000 -->
+		<script th:inline="javascript">
+			// JS Inline
+			// - html 파일 실행 시
+			// js 내부 타임리프 코드 오류를 발생하지 않도록 함
+			// + html 문법 오류 해결
+			
+			const message = "message값"; /* ${message} */
+			
+			document.querySelector("#message").innerText = message;
+			
+			const num1 = "1000";
+			document.querySelector("#num1").innerText = num1;
+		</script>
+		
+		<hr>
+		
+		<h3>th:classappend 속성 : 요소에 class 속성 값을 동적으로 추가</h3>
+		
+		<h4 th:classappend="red">th(타임리프) 제공하는 class(스타일태그) append(더하기) 실행중</h4>
+		
+		<h4 th:classappend="green">초록색 색상 태그 실행중</h4>
+		
+		<h4 class="red" th:classappend="deco">class 와 classappend 를 같이 사용하면 어떻게 될까요</h4>
+		<!-- class 와 classappend 가 모두 적용이 됨
+			 마지막에 작성해준 것이 적용
+		-->
+		<h4 class="green" th:classappend="deco">초록글씨에 밑줄치기</h4>
+		
+		<!--  안전 탐색 연산자  : ${객체?.필드} -->
+		<pre>
+			- 객체가 null 인지 판단 후 null 이 아닌 경우 수행
+		</pre>
+		
+		<!-- 예를 들어 타임리프로 작성한 변수명이 controller 에서 이름이 다르거나 존재하지 않으면 에러가 발생
+			 안전 탐색 연산자를 사용하면 에러 발생을 방지할 수 있음
+		 -->
+		 
+		 <h4 th:text="${std?.studentNo}">학번</h4>
+		 <!-- controller 에 해당하는 값이 이씅면 출력하고 아니면 에러없이 skip -->
+		 
+		 <!-- std 로 이름이 존재하면 이름이 보이게 끔 설정 -->
+		 <h4 th:text="${std?.name}">이름</h4>
+		 
+		 <!-- mem 이용해서 mem no name age 가져오기 -->
+		 <h4 th:text="${mem?.memberNo}">번호</h4>
+		 <h4 th:text="${mem?.memberName}">이름</h4>
+		 <h4 th:text="${mem?.memberAge}">나이</h4>
+		 
+		<!-- 번호를 자동으로 만들자  sequence -->
+		
+		<hr>
+		
+		<h3>번호를 자동으로 만들자  sequence</h3>
+		<pre>
+			- 시작부터 끝까지 번호로만 이루어진 숫자 배열 생성
+			
+			[사용법] ${#numbers.sequence(시작, 끝 [,step])} : 번호 발생기
+			
+			ex) 1 부터 5 까지 출력하기
+			${#numbers.sequence(1,5)}  
+			1 부터 5 까지 생성하는 코드 작성 완료
+			
+			[시퀀스를 왜 사용해서 자동으로 번호를 이루어지게끔 하는 것일까?]
+			- 타임리프 반복문 th:each 는 향상된 for 문으로 
+			일반 for 문의 동작을 못하기 때문에 이를 해결하기 위해 사용
+			일반 for 문(시작부터 끝까지 몇씩 증가해서 반복)
+			
+			each 문을 사용해서 테스트를 진행 
+			
+			th:text 에 변수 이외의 글자를 넣길 원한다면 "" 를 사용하고 "" 안에 |  | 사용해서 
+			"|텍스트와 변수명|" 을 작성
+		</pre>
+		
+		<ul>
+			<li th:each="i : ${#numbers.sequence(11, 20, 2)}" 
+			    th:text="|테스트 ${i}|"></li>
+		</ul>
+		<!-- <li th:each="i : ${#numbers.sequence(11, 20, 2)}"></li>
+			                     숫자 반복 시작하겠다  (반복시작숫자,끝낼숫자,+1 이 아닌 다른 수로 + 할 때 작성)
+			   i 로 숫자를 전달받고 th:text="${i}" 안에 i 값 전달
+			     -->
+			     
+		<ul>
+			<li th:each="a : ${#numbers.sequence(5,10)}" th:text="|숫자 ${a}|"></li>
+		</ul>
+		
+	</body>
+</html>

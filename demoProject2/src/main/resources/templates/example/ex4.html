@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>타임리프 예제 4</title>
+	</head>
+	<body>
+		<h1>타임리프 예제 4</h1>
+		<h3>타임리프 조건문 [1] = th:if / th:unless</h3>
+		
+		<pre>
+			th:if${조건식}
+			- 조건식이 **true** 인 경우에만
+			해당 속성이 작성된 요소를 화면에 출력
+			th:if${만약에 관리자가 접속했다면} = 상품 수정하기를 보여주겠다   - 이럴 때 사용
+			
+			th:unless=${조건식}
+			- 조건식이 **false** 인 경우에만
+			해당 속성이 작성된 요소를 화면에 출력
+			th:unless=${만약 비밀번호가 일치하지 않는다면} = 비밀번호 찾기 버튼 보이자   - 이럴 때 사용
+		</pre>
+		
+		<th:block th:if="${std == null}">
+			<!-- std == null 값이 없을 경우 -->
+			<h4>std 값 없음</h4>
+		</th:block>
+		<th:block th:unless="${std == null}">
+			<!-- std != null 값이 있을 경우 -->
+			<h4>std 값 있음</h4>
+		</th:block>
+		
+		<!-- mem null 멤버 값 없음    mem 있다면 mem 값 있음
+			memberNo  memnberName  memberAge
+		 -->
+		<th:block th:if="${mem == null}">
+			<h4>멤버 값 없음</h4>
+		</th:block>
+		<th:block th:unless="${mem == null}">
+			<h4>멤버 값 있음</h4>
+		</th:block>
+		
+		<h3>th:if / th:unless  조건식이 변수명 / 값 하나만 작성한 경우</h3>
+		<pre>
+			if 문에 작성된 값이 있으면 (값 != null) -> true
+			if 문에 작성된 값이 없으면 (값 == null) -> false
+		</pre>
+		
+		<h4 th:if="${std}">std 값 존재합니다. ${std == null} 에서 != null 생략</h4>
+		
+		<!-- Controller 에서 temp 값으로 model.addAttribute 로 전달된 값이 없기 때문에
+			 화면에 temp 로 지정된 태그는 보이지 않음
+		 -->
+		<h4 th:if="${temp}">temp 로 지정된 값이 존재합니다.</h4>
+		
+		<!-- model.addAttribute 로 testIf 라는 이름을 통해 테스트중 을 넣고
+		     th:if="${testIf}" 값 보여주기
+		 -->
+		 <h4 th:if="${testIf}">테스트 중이 들어왔습니다.</h4>
+		 <!-- th:if 을 사용할 때 th:text 를 같이 사용하면 충돌이 나서 에러가 발생 -->
+		 
+		 <h3>타임리프 조건문 [2] = th:switch / th:case</h3>
+		 <!-- 변수 값에 따라서 알맞은 case 실행 -->
+		 
+		 <th:block th:switch="${num}">
+		 	<h4 th:case="100">AAAAAA</h4>
+		 	<h4 th:case="200">BBBBBB</h4>
+		 	<h4 th:case="300">CCCCCC</h4>
+		 	<!-- default 대신 th:case="*" 위에 작성한 값 이외 모두 선택을 해준다는 의미
+		 		 만약에 controller 에서 num 값으로 가져오는 값이 없다면 default 값인 
+		 		 th:case="*" 작성된 내용이 보여질 것
+		 	 -->
+		 	<h4 th:case="*">ZZZZZZ</h4>
+		 </th:block>
+		 <!-- switch case 문을 이용해서 
+		 	  A 값 알파벳 A
+		 	  B 값 알파벳 B
+		 	  C 값 알파벳 C
+		 	  
+		 	  위 값이 없으면 선택된 알파벳이 없습니다.
+		  -->
+		 <th:block th:switch="${alpha}">
+		 	<h4 th:case="A">알파벳 A</h4>
+		 	<h4 th:case="B">알파벳 B</h4>
+		 	<h4 th:case="C">알파벳 C</h4>
+		 	
+		 	<h4 th:case="*">선택된 알파벳이 없습니다</h4>
+		 </th:block>
+		 
+		 <hr>
+		 
+		 <h3>삼항 연산자</h3>
+		 <pre>
+		 	- 타임리프 속성(th:)에 
+		 	삼항 연산자 (조건식 ? 참인경우 : 거짓인경우) 를 작성 가능
+		 	
+		 	(작성법만 잘 익히자)
+		 </pre>
+		 
+		 <!-- ${} 기호는 사용되는 부분에서만 작성 -->
+		 <h4 th:text="${std.age == 30} ? '서른' : '서른아님'">삼항 연산자</h4>
+		 <!-- th 로 시작하는 구문은 처음과 끝이 모두 글자 색상을 바꾸지 않는 이상 파란색으로 모두 표시 
+		 	  StudentDTO std = new StudentDTO("7890","피카츄",22);
+		 	  피카츄의 나이를 22 라고 작성했기 때문에 서른아님 이 나옴
+		 -->
+	</body>
+</html>
