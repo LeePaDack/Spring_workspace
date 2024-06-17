@@ -15,7 +15,9 @@ public class MemberService {
 	@Autowired // 해당값에 알아서 잘 작성된 내용을 전달
 	private MemberMapper memberMapper;
 	
-	public void 멤버가입(Member member) {
+	// 기존에는 눈에 보기 편하게 하기 위해 멤버 가입이라는 메서드명을 작성해줬지만
+	// Mapper.xml 파일에 존재하는 insert id 값으로 변경해서 작성해주기
+	public void insertMember(Member member) {
 		// 나중에 비밀번호 설정이나 정규식이나
 		// 비밀번호 일치여부와 같은 모든 기능 작성
 		memberMapper.insertMember(member);

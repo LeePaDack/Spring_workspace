@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>상품 등록하기</title>
+	</head>
+	<body>
+		<h1>상품 등록하기</h1>
+		<!-- model.addAttribute("goods", new Goods());   html 에 goods 이름으로 전달한다 작성했기 때문에
+			 th:object="${goods}" 를 이용해 나머지 input 에는 goods 를 사용하지 않고 바로 dto 에 작성한 변수명을 작성해준다
+			 만약 th:object="${goods}" 작성하지 않으면 goods.goodsName 이런 식으로 작성해주면 됨
+			 
+			 input 에 있는 값을 dto 에 있는 변수명에 넣어주기 때문에 
+			 th:field 라는 이름을 써서 
+			 일치하는 필드명(=변수명)에 고객이 작성한 값을 넣어주겠다 라는 표기
+		 -->
+		<form th:action="@{/register}" method="post" th:object="${goods}">
+			<!-- goods_id 값은 nextValue 로 자동으로 1 씩 증가하게 설정했기 때문에 (db 에서) form 에서는 작성 X -->
+			<!-- th:field="*{}" 에서의 * 표시는 th:object= 값을 가져온다는 표시 -->
+			상품명 : <input type="text" th:field="*{goodsName}"><br>	
+			상품가격 : <input type="number" th:field="*{goodsPrice}"><br>	
+			상품수량 : <input type="number" th:field="*{goodsQuantity}"><br>	
+			<button>제출하기</button>
+		</form>
+		
+		<h1>음료 등록하기</h1>
+		<form th:action="@{/drink-register}" method="post" th:object="${drinks}">
+			음료명 : <input type="text" th:field="*{drinksName}"><br>
+			음료가격 : <input type="number" th:field="*{drinksPrice}"><br>
+			음료수량 : <input type="number" th:field="*{drinksQuantity}"><br>
+			<button>제출하기</button>
+		</form>
+	</body>
+</html>

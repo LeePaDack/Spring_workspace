@@ -9,9 +9,19 @@
  
 <!-- mapper 로 sql 작성이 어디서부터 어디까지인지 범위를 설정
 	 namespace 는 나중에 java 파일 중에서 어떤 파일로 db 작성내용을 전달받고 전달할지 파일 지정 -->
+	 
+	 
+ 
 <mapper namespace="com.example.demo.mapper.MemberMapper">
 		<!-- id 는 나중에 MemberMapper 로 만든 interface 에 전달할 명칭
 		   parameterType 은 DTO 중에서 어떤 java 파일을 바라볼지 선택 -->
+		   
+<!-- id 값을 insertMember 로 작성했다면
+	 Java 파일에서 Mapper Service Controller 모두 insertMember 로 통일
+	 통일을 안해도 되긴하지만 Spring Boot 는 @(어노테이션) 과 properties 에 작성한
+	 작성 경로를 통해 임의적으로 이동하기 때문에 이름이 다를 경우에는 파일의 위치를 찾지 못하거나
+	 실행이 안될 수 있음
+ -->	
 	<insert id="insertMember" parameterType="com.example.demo.dto.Member">
 	INSERT INTO	member(member_id, member_name, member_age, member_phone)
 			<!-- DB 에 저장된 컬럼명 -->
