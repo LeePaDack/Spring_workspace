@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.dto.Drinks;
 import com.example.demo.dto.Goods;
+import com.example.demo.service.DrinksService;
 import com.example.demo.service.GoodsService;
 
 @Controller
@@ -43,4 +45,20 @@ public class GoodsController {
 		return "registerSuccess";
 		
 	}
+	
+	
+	@Autowired
+	private DrinksService drinksService;
+	
+	@PostMapping("/drink-register")
+	public String insertDrinks(Drinks drinks, Model model) {
+		drinksService.insertDrinks(drinks);
+		// log
+		model.addAttribute("msg","음료가 성공적으로 등록됐습니다.");
+		return "successDrink";
+	}
+	
+	
+	
+	
 }

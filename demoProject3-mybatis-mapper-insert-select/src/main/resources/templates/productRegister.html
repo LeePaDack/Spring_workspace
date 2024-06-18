@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>상품등록페이지</title>
+		<link rel="stylesheet" href="/register.css">
+	</head>
+	<body>
+		<h1>KHMALL 상품 등록하기</h1>
+		<!-- th 로 시작하는 타임리프를 쓸 때는 " 와  { 사이에 @, *, $ 중 하나를 무조건 작성 
+			 @ 주소 값을 가져올 때 작성  만약 변경되는 주소값을 넣지 않으면 @(th) 를 사용하지 않아도 되지만
+			 검색을 하거나 특정상품을 가져오는 등 주소값에 변경이 필요할 때는 @(th:action) 을 사용해줌
+			 @ -> 검색이나 상품 상세보기를 할 때 많이 사용
+			 $ -> DB 나 controller 에서 특정한 변수명을 가지고 와서 변수명에 담긴 정보를 이해할 때 사용
+			 * -> $ 모양으로 가져온 변수명을 앞에 붙여서 사용하겠다는 줄임말로 많이 사용
+			 
+		-->
+		
+		
+		
+		<form th:action="@{/register-product}" method="post" th:object="${goods}">
+			상품명 : <input type="text" th:field="*{goods_name}"><br>
+			상품가격 : <input type="text" th:field="*{goods_price}"><br>
+			상품수량 : <input type="number" th:field="*{goods_quantity}"><br>
+			<button>상품등록하기</button>
+		</form>
+	</body>
+</html>

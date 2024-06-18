@@ -15,24 +15,4 @@ public class DrinksController {
 		return "index";
 	}
 	
-	@Autowired
-	private DrinksService drinksService;
-	
-	@PostMapping("/drink-register")
-	public String insertDrinks(Drinks drinks, Model model) {
-		drinksService.insertDrinks(drinks);
-		// log
-		model.addAttribute("msg1","음료가 성공적으로 등록됐습니다.");
-		return "successDrink";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

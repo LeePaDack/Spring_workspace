@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>상품 전체보기</title>
+		<link rel="stylesheet" href="/productList.css">
+	</head>
+	<body>
+		<h1>상품목록</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>상품명</th>
+					<th>가격</th>
+					<th>수량</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- thymeleaf 에서 향상된 for 문 
+				 DB 에 저장된 상품 목록(List)들을 1 개씩 꺼내서 진영 
+			-->
+				<tr th:each="p: ${productList}">
+					<td th:text="${p.goods_id}"></td>
+					<td th:text="${p.goods_name}"></td>
+					<td th:text="${p.goods_price}"></td>
+					<td th:text="${p.goods_quantity}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
