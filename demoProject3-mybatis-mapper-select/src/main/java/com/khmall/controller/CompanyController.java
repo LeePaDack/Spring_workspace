@@ -16,10 +16,10 @@ public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	
-	@GetMapping("/allCompany")
+	@GetMapping("/companyList")
 	public String getAllCompany(Model model) {
 		List<Company> companyList = companyService.getAllCompany();
-		model.addAttribute("companyList",companyList);
+		model.addAttribute("comList",companyList);
 		return "companyList";
 		
 	} 

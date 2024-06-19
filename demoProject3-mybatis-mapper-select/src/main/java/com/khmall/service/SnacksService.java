@@ -14,7 +14,7 @@ Controller 에서 가져오거나 DB 에서 가져온 값에
 @Service DB 에서 가져온 SQL 구문이나 
 HTML 에서 DB 에 넣어줄 값에다가 추가적인 서비스를 
 적용하겠다 라는 표시 
- */
+*/
 @Service
 public class SnacksService {
 	
