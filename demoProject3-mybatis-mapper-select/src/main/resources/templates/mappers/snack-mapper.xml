@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper 로 sql 코드들 감싸기 ; 은 사용하지 않는다. -->
+<!-- 감싸진 sql 코드를 java 로 연결하기 위해 
+	 namespace 안에 작성된 자바 파일로 sql 구문을 전송하겠다. 라는 전송할 위치를 작성
+	 주로 interface 로 기능 목록만 작성하는 테이블명 Mapper.java 파일이 될 것임
+ -->
+<!-- Mapper 로 SQL 에 작성한 기능을 전송하기 위해 전송할 아이디 값을 id 에 적어준다.
+	 작성해서 DB 에서 가져온 과자 리스트 결과를 Snacks.java 파일에 Getter Setter 로 저장해서
+	 사용자 화면에 보여주는 것을 resultType 에 전송한다.
+	 
+	 resultType : DB 에서 가져온 결과들을 저장하는 공간
+ -->
+<mapper namespace="com.khmall.mapper.SnackMapper">
+	<select id="getAllSnacks" resultType="com.khmall.dto.Snacks">
+		SELECT * FROM snacks <!-- 절대 ; 를 붙이지마 -->	
+	</select>
+</mapper>        
