@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Join 문을 활용해서 Select 하기</title>
+	</head>
+	<body>
+		<h1>Join 을 활용해서 Select 하기</h1>
+		<!-- Mapper.xml 파일에 SQL 에서 정상적으로 작동하는 join 문을 xml 파일에 ; 을 제외하고 
+			 그대로 추가하면 정상적으로 작동이 가능
+			 select 의 경우에는 값을 sql DB 에서 정상적으로 가져오지 않아도 에러가 발생하거나
+			 select 에서 가져오는 DB 내용물만 보이지 않을 뿐이지 왜 안보이는지 알 수 없으므로
+			 controller 에서 Slf4j 어노테이션과 dto 에서 toString 어노테이션을 활용해서
+			 값을 정상적으로 가져오는지 확인할 수 있음
+		 -->
+		 
+		 <table border="1">
+		 	<thead>
+		 		<tr>
+		 			<th>과자명</th>
+		 			<th>가격</th>
+		 			<th>화사명</th>
+		 			<th>회사번호</th>
+		 			<th>회사주소</th>
+		 			<th>과자상세페이지로이동하기</th>
+		 			<th>회사상세페이지로이동하기</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		<tr th:each=" sac : ${snackAndCompany}">
+		 			<td th:text="${sac.snack_name}"></td>
+		 			<td th:text="${sac.price}"></td>
+		 			<td th:text="${sac.company_name}"></td>
+		 			<td th:text="${sac.company_phone}"></td>
+		 			<td th:text="${sac.company_address}"></td>
+		 			<td>
+		 				<a th:href="@{'/snack/' + ${sac.snack_id}}">이동하기</a>
+		 				<!-- sql 에서 시작하는 id 값이 1 번 부터인데 0 이 뜬다.
+		 					 값을 가져오지 못한 것  0 = null 
+		 				 -->
+		 			</td>
+		 					 			<td>
+		 				<a th:href="@{'/company/' + ${sac.company_id}}">이동하기</a>
+		 				<!-- sql 에서 시작하는 id 값이 1 번 부터인데 0 이 뜬다.
+		 					 값을 가져오지 못한 것  0 = null 
+		 				 -->
+		 			</td>
+		 		</tr>
+		 	</tbody>
+		 </table>
+	</body>
+</html>
