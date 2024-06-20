@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.khmall.mapper.PigMapper">
+	<!-- 모든 돼지 정보 가져오기 -->
+	<select id="getAllPigs" resultType="com.khmall.dto.Pig">
+		SELECT * FROM pigs
+	</select>
+	
+	<!-- 돼지 상세보기 ById id 값으로 돼지정보 get 하겠다 
+		 parameterType = 자료형 id 자료형이 무엇인지 작성
+	-->
+	<select id="getPigById" resultType="com.khmall.dto.Pig" parameterType="int">
+		SELECT * FROM pigs
+		WHERE pig_id = #{pig_id}
+	</select>
+</mapper>        

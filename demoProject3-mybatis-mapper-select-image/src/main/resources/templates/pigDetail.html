@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>상세보기</title>
+		<link rel="stylesheet" href="/css/styles.css">
+	</head>
+	<body>
+		<h1>상세보기</h1>
+		<div class="container">
+		<!-- 큰 따옴표 안에 작은 따옴표로 작성하는 공간은 글자로 띄워주는 공간
+			 변수의 영향을 받지 않는 공간 -->
+			<h1 th:text="${pig.pig_name} + '상세 정보'"></h1>
+			<div class="detail">
+				<img th:src="@{${pig.pig_image_path}}">
+			</div>
+			<div class="detail">
+				<span th:text="${pig.pig_name}"></span>
+			</div>
+		</div>
+	</body>
+</html>
