@@ -16,4 +16,9 @@
 		SELECT * FROM pigs
 		WHERE pig_id = #{pig_id}
 	</select>
+	
+	<insert id="uploadPig" parameterType="com.khmall.dto.Pig">
+		INSERT INTO pigs (pig_id, pig_name, pig_age, pig_image_path) 
+		VALUES (pig_seq.NEXTVAL, #{pig_name}, #{pig_age}, #{pig_image_path})
+	</insert>
 </mapper>        

@@ -13,4 +13,7 @@ public interface PigMapper {
 	
 	// 정보 하나만 가지고 오기
 	Pig getPigById(int pig_id);
+	
+	// 돼지정보 DB 에 업로드하기
+	public void uploadPig(Pig pig);
 }
