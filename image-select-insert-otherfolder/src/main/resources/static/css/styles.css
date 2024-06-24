@@ -1,0 +1,36 @@
+/***** 메인 페이지 css index.html *****/
+table {
+	width: 50%;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+img {
+	width: 50%;
+	height: auto;
+}
+/***** 상세보기 페이지 css pigDetail.html *****/
+.container {
+	width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	
+	box-shadow: 0 2px 3px yellow;
+	
+}
+
+.detail {
+	margin-bottom: 10px;
+}
+
+.detail img {
+	width: 300px;
+	height: auto;
+	border-radius: 15px;
+}
