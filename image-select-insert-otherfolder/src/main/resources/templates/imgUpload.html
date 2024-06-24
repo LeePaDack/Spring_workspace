@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>돼지 사진 업로드</title>
+		<link rel="stylesheet" href="/css/styles.css">
+	</head>
+	<body>
+		<div class="container">
+			<!--  이미지를 form 태그에 넣어서 업로드를 진행할 때는 enctype 작성 
+				enctype = 어떤 파일을 전송할 때 데이터 타입이 무엇인지 체크
+				이미지 파일을 post로 업로드 하기 위해서는 multipart/form-data
+				를 반드시 작성해서 전달하는 것이 안전
+				
+				enc   type     ENCoding  TYPE  반드시 7자
+				
+				application/x-www-form-urlencoded = 기본값 = 글자데이터만 전달
+						                        └   name=value 값이 들어있어서 name으로 전송
+						                        
+				multipart/form-data               = 비디오 이미지 와 같은 데이터도 같이 전달
+				
+				text/plain                        = 변환(인코딩) 하지 않고 그대로 전송 주로 버그찾는데 사용(사용x)
+			-->
+			<h1>돼지 사진 업로드</h1>
+			<form action="/upload" method="post" enctype="multipart/form-data">
+				<div>
+					<label>돼지이름 : </label>
+					<input type="text" th:field="${p.pig_name}" required>
+					<!-- 다음에 진행할 다른방법 2번 input type="text" name="pig_name" required -->
+				</div>
+			
+				<div>
+					<label>돼지나이 : </label>
+					<input type="number" th:field="${p.pig_age}" required>
+				</div>
+				<div>
+					<label>돼지이미지 : </label>
+					<input type="file" th:field="${p.pig_image_path}" required>
+				</div>
+				<button>업로드</button>
+			</form>
+		</div>
+	</body>
+</html>
