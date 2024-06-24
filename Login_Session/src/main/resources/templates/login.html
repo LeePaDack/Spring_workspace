@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>로그인</title>
+	</head>
+	<body>
+		<h1>로그인</h1>
+		<form action="/login" method="post">
+		<!-- nickname 대신 name 을 이용  password 대신 phone 을 이용 -->
+			<input type="text" th:field="${m.member_name}"><br>
+			<input type="text" th:field="${m.member_phone}"><br>
+			<button>로그인</button>
+		</form>
+		<div th:if="${error}">
+			<p th:text="${error}" style="color:red;"></p>
+		</div>
+	</body>
+</html>
