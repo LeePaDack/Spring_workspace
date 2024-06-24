@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.khmall.mapper.MemberMapper">
+	<!-- Login 을 통한 멤버 정보 가져오기 -->
+	<!-- where 에서 가져와야하는 값이 여러개일 경우 Map
+	parameterType="Map"
+	parameterType="java.util.Map"
+	Map = key value
+		각각의 자료형에 맞는 값을 가지고와서 넣어준다는 의미
+	
+	-->
+	<select id="getLogin" resultType="com.khmall.dto.Member" parameterType="java.util.Map">
+		SELECT * FROM MEMBER2
+		WHERE member_name = #{member_name} <!-- 사용자가 입력하는 이름값이 들어올 수 있도록설정 -->
+		AND member_phone = #{member_phone} <!-- 사용자가 입력하는 번호값이 들어올 수 있도록설정 -->
+		<!-- 위 두개가 모두 일치하는 고객이 있다면 로그인하자 -->
+	</select>
+
+</mapper>
