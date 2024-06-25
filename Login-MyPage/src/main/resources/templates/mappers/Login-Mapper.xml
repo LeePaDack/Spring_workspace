@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.khmall.mapper.LoginMapper">
+	<select id="getLogin" resultType="com.khmall.dto.Member" parameterType="java.util.Map">
+		SELECT * FROM member2
+		WHERE member_name = #{member_name}
+		AND member_phone = #{member_phone}
+	</select>
+	
+	<update id="updateMember" parameterType="com.khmall.dto.Member">
+		UPDATE member2
+		SET member_name = #{member_name},
+			member_phone = #{member_phone},
+			member_age = #{member_age}
+		WHERE member_id = #{member_id}
+	</update>	
+	
+	<delete id="deleteMember" parameterType="int">
+		DELETE FROM member2
+		WHERE member_id = #{member_id}
+	</delete>
+</mapper>        

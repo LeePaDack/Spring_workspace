@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>로그인 페이지</title>
+	</head>
+	<body>
+		<h1>로그인</h1>
+		<form action="/login" method="post">
+			이름 :
+			<input type="text" th:field="${m.member_name}"><br>
+			번호 :
+			<input type="text" th:field="${m.member_phone}"><br>
+			<button>로그인</button>
+		</form>
+		
+		<div th:if="${e}">
+			<p th:text="${e}" style="color :red;"></p>
+		</div>
+	</body>
+</html>
