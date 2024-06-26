@@ -1,5 +1,7 @@
 package com.khmall.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,9 @@ public class MemberService {
 	// DETETE 도 void -> return 이 없다
 	public void deleteMember(int member_id) {
 		memberMapper.deleteMember(member_id);
+	}
+	
+	public List<Member> searchMembers(String keyword){
+		return memberMapper.searchMembers(keyword);
 	}
 }

@@ -22,4 +22,10 @@
 		DELETE FROM member2
 		WHERE member_id = #{member_id}
 	</delete>
+	
+	<select id="searchMembers" resultType="com.khmall.dto.Member" parameterType="String">
+		SELECT * FROM member2
+		WHERE member_name LIKE '%' || #{keyword} || '%'
+		OR member_phone LIKE '%' || #{keyword} || '%'
+	</select>
 </mapper>        
