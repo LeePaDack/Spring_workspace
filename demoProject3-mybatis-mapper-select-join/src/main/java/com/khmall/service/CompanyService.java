@@ -16,3 +16,4 @@ public class CompanyService {
 		return companyMapper.getCompanyById(company_id);
 	}
 }
+	

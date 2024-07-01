@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.khmall.mapper.ImageUploadMapper">
+	<insert id="insertImageUpload" parameterType="com.khmall.dto.ImageUpload">
+		INSERT INTO image_upload(id, file_name, upload_dir)
+		VALUES (image_upload_seq.NEXTVAL, #{file_name}, #{upload_dir})
+		<!-- NEXTVAL 같은 경우 #{} 울 붙이지 않음 
+			 시간 같은 경우 알아서 현재 시간이 작성되게끔 했기 때문에 mapper 에 작성해줄 필요가 없음
+		-->		
+	</insert>
+</mapper>

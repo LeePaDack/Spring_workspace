@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>이미지 업로드</title>
+	</head>
+	<body>
+		<h1>이미지 업로드 하기</h1>
+		<form method="post" enctype="multipart/form-data" th:action="@{/api/v1/img/upload}">
+			<input type="file" name="files" multiple> <!-- 파일을 여러개 올릴 때는 multiple 추가 -->
+			<button>업로드하기</button>
+			
+		</form>
+		
+		<!-- thymeleaf 를 사용하지 않았을 때 작성하는 방법 
+		<form method="post" enctype="multipart/form-data" action="/api/v1/img/upload">
+			<input type="file" name="files" multiple>
+			<button>업로드하기</button>
+			
+		</form>
+		-->
+	</body>
+</html>
