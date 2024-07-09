@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Ajax 를 활용한 중복확인</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script>
+		// document = html 문서한테 언제 들어올진 모르겠지만 항상 사용자가 어떠한 요청을 받을 때 실행할 준비를 하자
+			$(Document).ready(function() { 
+				$('#checkDup').click(function(){ // checkDup 중복확인 버튼을 클릭하면 실행할 동작
+					// var : 변수자료형   input 태그에 id 에 해당하는 아이디명을 가지고 올 때는 # 을 붙임
+					// #아이디명 에 사용자가 입력한 값을 가져올 때는 value 의 줄임말인 val() 사용
+					// js 변수명 = html 에서 사용자(클라이언트)가 작성한 내용을 js 로 가져오기
+					var itemName = $('#itemName').val(); 
+					console.log("itemName 값 : " + itemName);
+				
+					// 값 가져오기가 완료 되었으면 ajax 를 통해 controller 와 연결하고
+					// DB 에 일치하는 값이 있는지 확인
+					$.ajax({ // ajax 를 시작하겠다.
+						// 1. controller 와 연결할(만날 주소) url 설정
+						url:'/check', // controller 에서 Mapping 에 /gooditem/check 작성한 메서드 (기능과 연결)
+						type:'GET', // @GetMapping 에 작성된 주소를 연결한다는 의미
+						data:{itemName : itemName}, // itemName 대신 $('#itemName').val() 를 사용할 수 있음
+						// name 이라는 이름으로 controller 에 itemName 에 담긴 값을 전달
+						// 키 : name 이라는 이름을 쓰겠다. 값 : itemName
+						// 만약에 키 값을 itemName 으로 모두 통일하길 원한다면 
+						// data:{itemName : itemName}, 으로 사용할 수 있음
+						// data:{name : $('#itemName').val()} 위 코드와 동일한 코드
+						
+						// 만약 중복확인을 DB 와 맞춰보고 성공
+						success : function(data){
+							if (data.isCheck){ // cotroller 에서 put 으로 가져온 isCheck 작성해서 true 인지 false 인지 확인
+								// alert("사용할 수 있는 아이디");
+								$("#dupMsg").text('이미 존재하는 상품명입니다.');
+							// -> text dupMsg 설정변경
+							} else{
+								$("#dupMsg").text('사용 가능한 상품명입니다.');
+								// alert("이미 사용중인 상품명");
+							}
+						}, // ',' expected.   -< error 시작 전에 , 를 안찍었다는 의미
+						error: function(){
+							$("#dupMsg").text('알 수 없는 오류 발생입니다.');
+							// alert("알 수 없는 오류 발생");
+						}
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<h1>Ajax 를 활용한 상품 중복확인</h1>
+		<label for="itemName">상품명</label>
+		<input type="text" id="itemName" name="itemName">
+		<button id="checkDup" type="button">중복확인 버튼</button>
+		<p id="dupMsg"></p>
+		
+		
+		
+		
+		
+		<pre>
+			Ajax 를 활용해서 Controller 에 상품명이 DB 에 이미 존재하는지
+			중복확인을 실시간으로 할 수 있음
+			jQuery 를 사용하지 않아도 되지만 jQuery 를 사용해주는 것이 효율적
+			-> 코드를 단순화 처리 해주기 때문
+		</pre>
+		<code>
+			-- goods_item Table
+			CREATE TABLE goods_item (
+    		item_id NUMBER PRIMARY KEY,
+    		item_name VARCHAR2(100) NOT NULL,
+    		item_description VARCHAR2(500)
+			);
+
+			-- goods_item_seq Sequence
+			CREATE SEQUENCE goods_item_seq
+		</code>
+
+	
+	</body>
+</html>

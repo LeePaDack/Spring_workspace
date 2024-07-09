@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.kh.test.mapper.GoodsItemMapper">
+	<!-- 만약에 SQL 에 작성된 컬럼명과 DTO 에 작성된 변수명이 일치하지 않을 때 
+		 SQL 컬럼명과 DTO 변수명이 일치하다 표기	
+		 
+		 resultMap 이란 SQL 컬럼명과 DTO 모델에 변수명을 연결 시켜주는 연결고리
+		 column = SQL 에 작성한 컬럼명
+		 property = DTO 에 작성한 변수명
+		 
+		 Map 이 시작하고 primaryKey 는 id 에 필수로 작성 나머지는 result 에 작성
+	 -->
+	 <resultMap type="com.kh.test.dto.GoodsItem" id="goodsMap">
+	 	<id column="item_id" property="itemId"></id>
+	 	<result column="item_name" property = "itemName" />
+	 	<result column="item_description" property = "itemDes" />
+	 	<result column="COUNT(*)" property="itemCount"/>
+	 </resultMap>
+
+	<!-- 상품명이 존재하는지 확인하는 select 쿼리      java.util.Map -> COUNT(*) 가 숫자이기 때문에 Integer 숫자 객체로 변경할 수 있음
+		 
+		 resultType    = com.kh.test.dto.GoodsItem 넣어도 되고, Map 이나 Integer String 을 넣어도 됨
+		 parameterType = com.kh.test.dto.GoodsItem 설정해서 일일이 맞춰줌
+		 resultMap     = 위에서 작성한 resultMap 의 id 값을 넣어줌  goodsMap
+		 
+		 resultType   resultMap 는 일반적으로 같이 사용 불가
+	 -->
+	<select id="existsByName" resultType="java.lang.Integer" resultMap="goodsMap" parameterType="com.kh.test.dto.GoodsItem">
+	<!-- 만약에 goods_item 테이블에서 
+		 상품명이 하나라도 존재한다면 COUNT 에 1 이라고 뜰 것이고, 
+		 상품명이 동일한게 2 개 있다면 2 라고 뜰 것
+		 그런데 없으면 아무것도 표기가 되지 않음
+		 
+	     <select id="existsByName" resultType="java.lang.Integer" 
+	     						   parameterType="com.kh.test.dto.GoodsItem">
+	     						   작성해서 숫자값만 넘겨줄 수 있음
+	-->
+		SELECT COUNT(*) FROM goods_item WHERE item_name = #{itemName}
+	</select>
+</mapper>
