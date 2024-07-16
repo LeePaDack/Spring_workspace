@@ -9,5 +9,10 @@
 		INSERT INTO TODO_MEMBER
 		VALUES(SEQ_TODO_MEMBER_NO.NEXTVAL, #{id}, #{pw}, #{name})
 	</insert>
-
+	
+	<select id="login" resultType="TodoMember">
+		SELECT * FROM TODO_MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
+	</select>
 </mapper>

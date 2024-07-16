@@ -1,5 +1,7 @@
 package com.kh.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +53,15 @@ public class TodoController {
 	@PostMapping(value="/signup")
 	public int signup(@RequestBody TodoMember member) {
 		return service.signup(member);
+	}
+	
+	/** 로그인
+	 * @param member
+	 * @return 성공 : 회원정보와 / todoList 를 볼 수 있는 정보 제공, 실패 : null
+	 */
+	@PostMapping("/login")
+	public Map<String, Object> login(@RequestBody TodoMember member) {
+		return service.login(member);
 	}
 	
 	
